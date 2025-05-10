@@ -141,6 +141,8 @@ class isInContourV3_Easy(Contour_Checking_fn):
 			if cv2.pointPolygonTest(self.cont, points, False) >= 0:
 				return 1
 		return 0  
+
+
 # lated end 
 
 # class isInContourV3_Easy:
