@@ -798,7 +798,7 @@ class WholeSlideImage(object):
 
         ###### normalize filtered scores ######
         if convert_to_percentiles:
-            scores = to_percentiles(scores)Non-numeric coord
+            scores = to_percentiles(scores)
 
         scores /= 100
 
