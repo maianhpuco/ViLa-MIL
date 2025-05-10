@@ -14,7 +14,7 @@ paths:
 processing:
   patch_size: 256
   step_size: 256
-  patch_level: 0
+  patch_level: 1
   seg: true
   patch: true
   stitch: false

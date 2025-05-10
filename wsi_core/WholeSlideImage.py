@@ -604,13 +604,30 @@ class WholeSlideImage(object):
     #     else:
     #         return None
     # In /project/hnguyen2/mvu9/folder_04_ma/ViLa-MIL/wsi_core/WholeSlideImage.py
+    
     @classmethod
     def process_coord_candidate(cls, coord, contour_holes, ref_patch_size, cont_check_fn):
+        # print(f"Coord: {coord}, Type: {type(coord)}, Contour_holes: {len(contour_holes)} holes")
+        # if WholeSlideImage.isInContours(cont_check_fn, coord, contour_holes, ref_patch_size):
+        #     return coord
+        # else:
+        #     return None
         print(f"Coord: {coord}, Type: {type(coord)}, Contour_holes: {len(contour_holes)} holes")
+        # Validate coord
+        if not isinstance(coord, (list, tuple, np.ndarray)) or len(coord) != 2:
+            print(f"Invalid coord: {coord}")
+            return None
+        if not all(isinstance(x, (int, float)) and not np.isnan(x) for x in coord):
+            print(f"Non-numeric coord: {coord}")
+            return None
+        # Convert coord to list of integers
+        coord = [int(x) for x in coord]
         if WholeSlideImage.isInContours(cont_check_fn, coord, contour_holes, ref_patch_size):
             return coord
         else:
-            return None
+            return None 
+        
+        
     def visHeatmap(self, scores, coords, vis_level=-1,
                    top_left=None, bot_right=None,
                    patch_size=(256, 256),
