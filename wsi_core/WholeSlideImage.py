@@ -161,10 +161,18 @@ class WholeSlideImage(object):
         filter_params['a_h'] = filter_params['a_h'] * scaled_ref_patch_area
 
         # Find and filter contours
-        contours, hierarchy = cv2.findContours(img_otsu, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE) # Find contours
+        contours, hierarchy = cv2.findContours(
+            img_otsu, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_NONE) # Find contours
         hierarchy = np.squeeze(hierarchy, axis=(0,))[:, 2:]
-        if filter_params: foreground_contours, hole_contours = _filter_contours(contours, hierarchy, filter_params)  # Necessary for filtering out artifacts
 
+        if filter_params: 
+            foreground_contours, hole_contours = _filter_contours(
+                contours, hierarchy, filter_params)  # Necessary for filtering out artifacts
+            print(f"Contours found: {len(foreground_contours)}")
+            for i, cont in enumerate(foreground_contours):
+                print(f"Contour {i} shape: {cont.shape}, dtype: {cont.dtype}, area: {cv2.contourArea(cont)}")
+            for i, holes in enumerate(hole_contours):
+                print(f"Holes {i}: {len(holes)} holes")
         self.contours_tissue = self.scaleContourDim(foreground_contours, scale)
         self.holes_tissue = self.scaleHolesDim(hole_contours, scale)
 
@@ -177,9 +185,13 @@ class WholeSlideImage(object):
         self.contours_tissue = [self.contours_tissue[i] for i in contour_ids]
         self.holes_tissue = [self.holes_tissue[i] for i in contour_ids]
 
-    def visWSI(self, vis_level=0, color = (0,255,0), hole_color = (0,0,255), annot_color=(255,0,0),
-               line_thickness=250, max_size=None, top_left=None, bot_right=None, custom_downsample=1, view_slide_only=False,
-               number_contours=False, seg_display=True, annot_display=True):
+    def visWSI(self, vis_level=0, color = (0,255,0), 
+               hole_color = (0,0,255), annot_color=(255,0,0),
+               line_thickness=250, max_size=None, 
+               top_left=None, bot_right=None, 
+               custom_downsample=1, view_slide_only=False,
+               number_contours=False, 
+               seg_display=True, annot_display=True):
 
         downsample = self.level_downsamples[vis_level]
         scale = [1/downsample[0], 1/downsample[1]]
