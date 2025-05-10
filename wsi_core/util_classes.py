@@ -86,6 +86,7 @@ class isInContourV2(Contour_Checking_fn):
 # 		return 0
 
 # In /project/hnguyen2/mvu9/folder_04_ma/ViLa-MIL/wsi_core/util_classes.py
+#lated ---- 
 import numpy as np
 
 class isInContourV3_Easy:
@@ -119,6 +120,7 @@ class isInContourV3_Easy:
             if cv2.pointPolygonTest(self.cont, point_tuple, False) >= 0:
                 return True
         return False 
+# lated end 
 
 # class isInContourV3_Easy:
 #     def __init__(self, contour, patch_size, center_shift=0.5):
