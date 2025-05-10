@@ -707,10 +707,10 @@ class WholeSlideImage(object):
         print(f"Coord: {coord}, Type: {type(coord)}, Contour_holes: {len(contour_holes)} holes")
         # Validate coord
         if not isinstance(coord, (list, tuple, np.ndarray)) or len(coord) != 2:
-            print(f"Invalid coord: {coord}")
+            # print(f"Invalid coord: {coord}")
             return None
         if not all(isinstance(x, (int, float)) and not np.isnan(x) for x in coord):
-            print(f"Non-numeric coord: {coord}")
+            # print(f"Non-numeric coord: {coord}")
             return None
         # Convert coord to list of integers
         coord = [int(x) for x in coord]
@@ -798,7 +798,7 @@ class WholeSlideImage(object):
 
         ###### normalize filtered scores ######
         if convert_to_percentiles:
-            scores = to_percentiles(scores)
+            scores = to_percentiles(scores)Non-numeric coord
 
         scores /= 100
 
