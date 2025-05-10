@@ -469,9 +469,13 @@ class WholeSlideImage(object):
         pool = mp.Pool(num_workers)
 
         iterable = [(coord, contour_holes, ref_patch_size[0], cont_check_fn) for coord in coord_candidates]
-        results = pool.starmap(WholeSlideImage.process_coord_candidate, iterable)
-        pool.close()
-        results = np.array([result for result in results if result is not None])
+        # results = pool.starmap(WholeSlideImage.process_coord_candidate, iterable)
+        # pool.close()
+        results = []
+        for args in iterable:
+            result = WholeSlideImage.process_coord_candidate(*args)
+            results.append(result) 
+        # results = np.array([result for result in results if result is not None])
 
         print('Extracted {} coordinates'.format(len(results)))
 
