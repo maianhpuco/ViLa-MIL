@@ -697,7 +697,7 @@ class WholeSlideImage(object):
         else:
             return {}, {}
 
-    @staticmethod
+    @classmethod
     def process_coord_candidate(cls, coord, contour_holes, ref_patch_size, cont_check_fn):
         # print(f"Coord: {coord}, Type: {type(coord)}, Contour_holes: {len(contour_holes)} holes")
         # if WholeSlideImage.isInContours(cont_check_fn, coord, contour_holes, ref_patch_size):
