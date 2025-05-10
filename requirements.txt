@@ -9,4 +9,3 @@ scikit-learn==0.22.1
 scipy==1.4.1
 tensorboardx==1.9
 captum==0.2.0
-shap==0.35.0
