@@ -64,26 +64,26 @@ class isInContourV2(Contour_Checking_fn):
 		return 1 if cv2.pointPolygonTest(self.cont, (pt[0]+self.patch_size//2, pt[1]+self.patch_size//2), False) >= 0 else 0
 
 # Easy version of 4pt contour checking function - 1 of 4 points need to be in the contour for test to pass
-# class isInContourV3_Easy(Contour_Checking_fn):
-# 	def __init__(self, contour, patch_size, center_shift=0.5):
-# 		self.cont = contour
-# 		self.patch_size = patch_size
-# 		self.shift = int(patch_size//2*center_shift)
-# 	def __call__(self, pt): 
-# 		center = (pt[0]+self.patch_size//2, pt[1]+self.patch_size//2)
-# 		if self.shift > 0:
-# 			all_points = [(center[0]-self.shift, center[1]-self.shift),
-# 						  (center[0]+self.shift, center[1]+self.shift),
-# 						  (center[0]+self.shift, center[1]-self.shift),
-# 						  (center[0]-self.shift, center[1]+self.shift)
-# 						  ]
-# 		else:
-# 			all_points = [center]
+class isInContourV3_Easy(Contour_Checking_fn):
+	def __init__(self, contour, patch_size, center_shift=0.5):
+		self.cont = contour
+		self.patch_size = patch_size
+		self.shift = int(patch_size//2*center_shift)
+	def __call__(self, pt): 
+		center = (pt[0]+self.patch_size//2, pt[1]+self.patch_size//2)
+		if self.shift > 0:
+			all_points = [(center[0]-self.shift, center[1]-self.shift),
+						  (center[0]+self.shift, center[1]+self.shift),
+						  (center[0]+self.shift, center[1]-self.shift),
+						  (center[0]-self.shift, center[1]+self.shift)
+						  ]
+		else:
+			all_points = [center]
 		
-# 		for points in all_points:
-# 			if cv2.pointPolygonTest(self.cont, points, False) >= 0:
-# 				return 1
-# 		return 0
+		for points in all_points:
+			if cv2.pointPolygonTest(self.cont, points, False) >= 0:
+				return 1
+		return 0
 
 # In /project/hnguyen2/mvu9/folder_04_ma/ViLa-MIL/wsi_core/util_classes.py
 #lated ---- 
@@ -98,10 +98,10 @@ class isInContourV3_Easy:
     def __call__(self, pt):
         # Validate pt
         if not isinstance(pt, (list, tuple, np.ndarray)) or len(pt) != 2:
-            print(f"Invalid pt: {pt}")
+            # print(f"Invalid pt: {pt}")
             return False
         if not all(isinstance(x, (int, float, np.integer, np.floating)) and not np.isnan(x) for x in pt):
-            print(f"Non-numeric pt: {pt}")
+            # print(f"Non-numeric pt: {pt}")
             return False
 
         # Convert pt to integers
@@ -116,7 +116,7 @@ class isInContourV3_Easy:
         ]
         for point in points:
             point_tuple = tuple(int(x) for x in point)
-            print(f"Testing point: {point_tuple}")  # Debug
+            # print(f"Testing point: {point_tuple}")  # Debug
             if cv2.pointPolygonTest(self.cont, point_tuple, False) >= 0:
                 return True
         return False 

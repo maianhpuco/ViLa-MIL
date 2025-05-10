@@ -704,7 +704,7 @@ class WholeSlideImage(object):
         #     return coord
         # else:
         #     return None
-        print(f"Coord: {coord}, Type: {type(coord)}, Contour_holes: {len(contour_holes)} holes")
+        # print(f"Coord: {coord}, Type: {type(coord)}, Contour_holes: {len(contour_holes)} holes")
         # Validate coord
         if not isinstance(coord, (list, tuple, np.ndarray)) or len(coord) != 2:
             # print(f"Invalid coord: {coord}")
