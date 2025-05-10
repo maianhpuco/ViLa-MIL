@@ -234,3 +234,31 @@ This project is based on [CLAM](https://github.com/mahmoodlab/CLAM), [CoOp](http
 
 ## Contact
 shijiangbo@stu.xjtu.edu.cn
+
+==================================Customize==================================
+```
+conda install -c conda-forge \
+    h5py=2.10.0 \
+    matplotlib=3.1.1 \
+    numpy=1.18.1 \
+    pandas=1.1.3 \
+    pillow=7.0.0 \
+    scikit-learn=0.22.1 \
+    scipy=1.4.1 \
+    openslide-python=1.1.1 \
+    openslide=3.4.1 \
+    pytorch=1.6.0 \
+    torchvision=0.7.0 \
+    -y
+
+pip install \
+    tensorboardx==1.9 \
+    captum==0.2.0 \
+    shap==0.35.0 \
+    clip==1.0 \
+    opencv-python==4.1.1.26
+
+pip install opencv-python-headless==4.1.1.26
+
+``` 
+

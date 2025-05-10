@@ -314,9 +314,9 @@ if __name__ == '__main__':
 	print(parameters)
 
 	seg_times, patch_times = seg_and_patch(**directories, **parameters,
-										   slide_name_file=args.slide_name_file,
-										   patch_size = args.patch_size, step_size=args.step_size,
-										   seg = args.seg,  use_default_params=False, save_mask = True,
-										   stitch= args.stitch,
-										   patch_level=args.patch_level, patch = args.patch,
-										   process_list = process_list, auto_skip=args.no_auto_skip, uuid_name_file=args.uuid_name_file)
+			slide_name_file=args.slide_name_file,
+			patch_size = args.patch_size, step_size=args.step_size,
+			seg = args.seg,  use_default_params=False, save_mask = True,
+			stitch= args.stitch,
+			patch_level=args.patch_level, patch = args.patch,
+			process_list = process_list, auto_skip=args.no_auto_skip, uuid_name_file=args.uuid_name_file)
